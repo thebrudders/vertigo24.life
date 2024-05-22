@@ -1,1 +1,121 @@
-hi
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>##vertigo24</title>
+
+    <link rel="icon" href="img/favicon.png" sizes="192x192">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta charset="UTF-8">
+    <!--
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="theme-color" content="#000000">
+    <meta name="keywords" content="vertigo24">
+    <meta name="description" content="vertigo24">
+    <meta charset="UTF-8">
+
+    <meta property="og:title" content="vertigo24">
+    <meta property="og:url" content="https://vertigo24.life/">
+    <meta property="og:description" content="vertigo24">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="https://vertigo24.life/img/vertigo.png">
+    -->
+
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #000000;
+            color: white;
+            font-family: 'Arial Black', cursive;
+            overflow: hidden;
+            position: relative;
+        }
+
+        #background {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('img/bg.gif') no-repeat center center;
+            background-size: cover;
+            opacity: 0.05;
+            z-index: 1;
+        }
+
+        #countdown {
+            position: relative;
+            z-index: 2;
+            color: white;
+            font-size: 3em;
+        }
+
+        @media (max-width: 600px) {
+            #countdown {
+                font-size: 2em;
+            }
+        }
+
+        @media (max-width: 400px) {
+            #countdown {
+                font-size: 1.5em;
+            }
+        }
+
+        /*
+        audio {
+            position: relative;
+            z-index: 2;
+            margin-top: 20px;
+            width: 300px;
+        }
+        */
+    </style>
+
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.4.0/dist/confetti.browser.min.js"></script>
+</head>
+
+<body>
+    <div id="background"></div>
+    <div id="countdown"></div>
+
+    <!--
+    <audio controls>
+        <source src="sounds/vertigo24.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
+    -->
+
+    <script>
+        const countdown_elem = document.getElementById('countdown');
+        const target_date = new Date('2024-05-31T23:59:00-05:00'); // Central Time
+
+        function update_countdown() {
+            const now = new Date();
+            const time_remaining = target_date - now;
+
+            if (time_remaining > 0) {
+                const days = Math.floor(time_remaining / (1000 * 60 * 60 * 24));
+                const hours = Math.floor((time_remaining % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const minutes = Math.floor((time_remaining % (1000 * 60 * 60)) / (1000 * 60));
+                const seconds = Math.floor((time_remaining % (1000 * 60)) / 1000);
+
+                countdown_elem.textContent = `${days}d ${hours}h ${minutes}m ${seconds}s`;
+            } else {
+                countdown_elem.textContent = "0d 0h 0m 0s";
+                confetti();
+            }
+        }
+
+        update_countdown();
+        setInterval(update_countdown, 1000);
+    </script>
+</body>
+
+</html>
