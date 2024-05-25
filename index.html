@@ -275,7 +275,7 @@
 
         function update_countdown() {
             const now = new Date();
-            const time_remaining = 0;//target_date - now;
+            const time_remaining = target_date - now;
 
             if (time_remaining > 0) {
                 const days = Math.floor(time_remaining / (1000 * 60 * 60 * 24));
