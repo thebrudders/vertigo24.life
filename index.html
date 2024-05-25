@@ -49,30 +49,79 @@
             height: 100%;
             background: url('img/bg.gif') no-repeat center center;
             background-size: cover;
-            opacity: 0.05;
+            opacity: 0.1;
             z-index: 1;
+            animation: blink 4s infinite;
         }
 
-        #countdown {
+        @keyframes blink {
+
+            0%,
+            60% {
+                opacity: 0.1;
+            }
+
+            60%,
+            65% {
+                opacity: 0.1;
+            }
+
+            65%,
+            70% {
+                opacity: 0
+            }
+
+            70%, 73% {
+                opacity: 0.05;
+            }
+
+            73%,
+            100% {
+                opacity: 0.1;
+            }
+        }
+
+        #countdown,
+        #pre-save {
             position: relative;
             z-index: 2;
             color: white;
-            font-size: 3em;
-            font-size: 3em;
             text-transform: uppercase;
             font-family: "Roboto Mono", monospace;
             font-weight: 700;
+        }
+
+        #countdown {
+            font-size: 3em;
+        }
+
+        #pre-save {
+            font-size: 1.5em;
+            margin-top: 10px;
+            text-decoration: none;
+        }
+
+        #pre-save:hover {
+            text-decoration: none;
         }
 
         @media (max-width: 600px) {
             #countdown {
                 font-size: 2em;
             }
+
+            #pre-save {
+                font-size: 1em;
+            }
         }
 
         @media (max-width: 400px) {
             #countdown {
                 font-size: 1.5em;
+            }
+
+            #pre-save {
+                font-size: 1.2em;
             }
         }
 
@@ -86,9 +135,11 @@
             border-radius: 5px;
         }
 
-        audio::-webkit-media-controls-panel {
-            background-color: #444;
-            color: white;
+        audio::-webkit-media-controls-panel,
+        audio::-webkit-media-controls-enclosure,
+        audio::-webkit-media-controls-timeline-container,
+        audio::-webkit-media-controls-volume-control-container {
+            background-color: #585858;
         }
 
         audio::-webkit-media-controls-play-button,
@@ -101,8 +152,21 @@
         audio::-webkit-media-controls-seek-forward-button,
         audio::-webkit-media-controls-fullscreen-button,
         audio::-webkit-media-controls-rewind-button,
-        audio::-webkit-media-controls-return-to-realtime-button {
+        audio::-webkit-media-controls-return-to-realtime-button,
+        audio::-webkit-media-controls-toggle-closed-captions-button,
+        audio::-webkit-media-controls-text-track-container {
             filter: invert(100%);
+        }
+
+        audio::-webkit-media-controls-shadow-playback-button {
+            background-color: black;
+            /* Set the 3 dots color to black */
+            border-radius: 50%;
+            /* Optional: if you want it to look like dots */
+        }
+
+        #background-audio {
+            display: none;
         }
     </style>
 
@@ -113,8 +177,15 @@
     <div id="background"></div>
     <div id="countdown"></div>
 
+    <a id="pre-save" href="#">CLICK TO PRE-SAVE</a>
+
     <audio controls>
         <source src="sounds/vertigo24.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
+
+    <audio id="background-audio" autoplay loop>
+        <source src="sounds/ambience.mp3" type="audio/mpeg">
         Your browser does not support the audio element.
     </audio>
 
