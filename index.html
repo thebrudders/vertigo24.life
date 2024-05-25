@@ -84,6 +84,7 @@
 
         #countdown,
         #pre-save,
+        #preview-audio-text,
         #platform {
             position: relative;
             z-index: 2;
@@ -97,7 +98,13 @@
             font-size: 3em;
         }
 
+        #youtube {
+            position: relative;
+            z-index: 3;
+        }
+
         #pre-save,
+        #preview-audio-text,
         #platform {
             font-size: 1.5em;
             margin-top: 10px;
@@ -105,6 +112,7 @@
         }
 
         #pre-save:hover,
+        #preview-audio-text,
         #platform:hover {
             text-decoration: none;
         }
@@ -114,7 +122,8 @@
                 font-size: 2em;
             }
 
-            #pre-save {
+            #pre-save,
+            #preview-audio-text {
                 font-size: 1em;
             }
 
@@ -130,11 +139,12 @@
 
         @media (max-width: 400px) {
             #countdown {
-                font-size: 1.3em;
+                font-size: 2.4em;
             }
 
-            #pre-save {
-                font-size: 0.9em;
+            #pre-save,
+            #preview-audio-text {
+                font-size: 1.1em;
             }
 
             #platforms {
@@ -208,6 +218,12 @@
 
     <a id="pre-save" href="https://too.fm/8lmm8ml">CLICK TO PRE-SAVE</a>
 
+    <br/>
+    <div id="youtube"></div>
+    <br/>
+
+    <a id="preview-audio-text">CURRENTLY FEATURING: wockane - XOXO</a>
+
     <audio id="preview-audio" controls>
         <source src="sounds/vertigo24.mp3" type="audio/mpeg">
         Your browser does not support the audio element.
@@ -218,9 +234,6 @@
         Your browser does not support the audio element.
     </audio>
 
-    <br />
-    <div id="youtube"></div>
-
     <div id="platforms"></div>
 
     <script>
@@ -230,10 +243,11 @@
         let countdown_time = 1000;
         let confetti_frame = -1;
 
+        const youtube = document.getElementById("youtube");
+
         function setup_release_website() {
             // remove preview audio
-            const preview = document.getElementById("preview-audio");
-            preview.remove();
+            document.getElementById("preview-audio").remove();
 
             // change presave text
             const new_presave_text = "LISTEN TO VERTIGO ON ALL PLATFORMS";
@@ -268,9 +282,8 @@
                     </a>
                     `;
 
-            // add youtube iframe
-            const youtube = document.getElementById("youtube");
-            youtube.innerHTML = youtube.innerHTML + `<iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/D1UlWlXKUIY?si=XijfWZxl58sVuGPM" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>`
+            // change youtube iframe
+            youtube.innerHTML = `<iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/videoseries?si=1ZCR0PS7367yejbv&amp;list=PLXNC0dKysHYzHUR0ZlnV9OjLav6gjk0Gw" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>`
         }
 
         function update_countdown() {
@@ -307,6 +320,9 @@
                 confetti_frame = confetti_frame + 1;
             }
         }
+
+        // setup countdown iframe
+        youtube.innerHTML = `<iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/D1UlWlXKUIY?si=OCyDWOc8LkDek5zy" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>`;
 
         update_countdown();
         setInterval(update_countdown, countdown_time);
