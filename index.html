@@ -252,8 +252,7 @@
 
                     // add platforms
                     const platforms = document.getElementById("platforms");
-                    platforms.innerHTML = platforms.innerHTML + `
-                    <br />
+                    platforms.innerHTML = platforms.innerHTML + `    
                     <a id="platform" href="https://music.amazon.com/albums/B0CZPFTMF1?marketplaceId=ATVPDKIKX0DER&musicTerritory=US&ref=dm_sh_GlEhh43o4flk1Xfgs7VDktEe2"
                     target="_blank">
                         <i class="fab fa-amazon"></i> AMAZON MUSIC
@@ -277,7 +276,9 @@
                     <a id="platform" href="https://soundcloud.com/jamesstfu/sets/vertigo" 
                     target="_blank">
                         <i class="fab fa-soundcloud"></i> SOUNDCLOUD
-                    </a>`;
+                    </a>
+                    `;
+                    // it reads html bottom to top lmfao
                 }
 
                 countdown_elem.textContent = "0d 0h 0m 0s";
