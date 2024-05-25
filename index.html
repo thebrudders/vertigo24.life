@@ -71,7 +71,8 @@
                 opacity: 0
             }
 
-            70%, 73% {
+            70%,
+            73% {
                 opacity: 0.05;
             }
 
@@ -82,7 +83,8 @@
         }
 
         #countdown,
-        #pre-save {
+        #pre-save,
+        #platform {
             position: relative;
             z-index: 2;
             color: white;
@@ -95,13 +97,15 @@
             font-size: 3em;
         }
 
-        #pre-save {
+        #pre-save,
+        #platform {
             font-size: 1.5em;
             margin-top: 10px;
             text-decoration: none;
         }
 
-        #pre-save:hover {
+        #pre-save:hover,
+        #platform:hover {
             text-decoration: none;
         }
 
@@ -168,9 +172,21 @@
         #background-audio {
             display: none;
         }
+
+        #platform {
+            font-size: 1.2em;
+        }
+
+        #platforms {
+            padding-top: 10px;
+            display: flex;
+            flex-direction: column-reverse;
+        }
     </style>
 
-    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.4.0/dist/confetti.browser.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.4.0/dist/confetti.browser.min.js"
+        crossorigin="anonymous"></script>
+    <script src="https://kit.fontawesome.com/56a6a33104.js" crossorigin="anonymous"></script>
 </head>
 
 <body>
@@ -179,7 +195,7 @@
 
     <a id="pre-save" href="https://too.fm/8lmm8ml">CLICK TO PRE-SAVE</a>
 
-    <audio controls>
+    <audio id="preview-audio" controls>
         <source src="sounds/vertigo24.mp3" type="audio/mpeg">
         Your browser does not support the audio element.
     </audio>
@@ -189,9 +205,14 @@
         Your browser does not support the audio element.
     </audio>
 
+    <div id="platforms"></div>
+
     <script>
         const countdown_elem = document.getElementById('countdown');
         const target_date = new Date('2024-05-31T23:59:00-05:00'); // Central Time
+
+        let countdown_time = 1000;
+        let confetti_frame = -1;
 
         function update_countdown() {
             const now = new Date();
@@ -205,13 +226,69 @@
 
                 countdown_elem.textContent = `${days}d ${hours}h ${minutes}m ${seconds}s`;
             } else {
+                if (countdown_time == 1000) {
+                    // change countdown time
+                    countdown_time = 500;
+
+                    // remove preview audio
+                    const preview = document.getElementById("preview-audio");
+                    preview.remove();
+
+                    // change presave text
+                    const new_presave_text = "LISTEN TO VERTIGO ON ALL PLATFORMS";
+                    const presave = document.getElementById("pre-save");
+                    if (presave.textContent != new_presave_text)
+                        presave.textContent = new_presave_text;
+                        presave.removeAttribute("href")
+
+                    // add platforms
+                    const platforms = document.getElementById("platforms");
+                    platforms.innerHTML = platforms.innerHTML + `
+                    <br />
+                    <a id="platform" href="https://music.amazon.com/albums/B0CZPFTMF1?marketplaceId=ATVPDKIKX0DER&musicTerritory=US&ref=dm_sh_GlEhh43o4flk1Xfgs7VDktEe2"
+                    target="_blank">
+                        <i class="fab fa-amazon"></i> AMAZON MUSIC
+                    </a>
+                    <a id="platform" href="https://music.apple.com/us/album/after-dark-ep/1739861003"
+                    target="_blank">
+                        <i class="fab fa-apple"></i> APPLE MUSIC
+                    </a>
+                    <a id="platform" href="https://open.spotify.com/album/6VSGHaSkcU1Li8uRqvRkih"
+                    target="_blank">
+                        <i class="fab fa-spotify"></i> SPOTIFY
+                    </a>
+                    <a id="platform" href="https://www.music.youtube.com/playlist?list=PLXNC0dKysHYwHhPwxjLOt9slte5MxGqaZ"
+                    target="_blank">
+                        <i class="fab fa-youtube"></i> YOUTUBE MUSIC
+                    </a>
+                    <a id="platform" href="https://www.youtube.com/playlist?list=PLXNC0dKysHYwHhPwxjLOt9slte5MxGqaZ"
+                    target="_blank">
+                        <i class="fab fa-youtube"></i> YOUTUBE
+                    </a>
+                    <a id="platform" href="https://soundcloud.com/jamesstfu/sets/vertigo" 
+                    target="_blank">
+                        <i class="fab fa-soundcloud"></i> SOUNDCLOUD
+                    </a>`;
+                }
+
                 countdown_elem.textContent = "0d 0h 0m 0s";
-                confetti();
+
+                if (confetti_frame != -1 && confetti_frame % 2)
+                    countdown_elem.setAttribute("style", "opacity:0; -moz-opacity:0; filter:alpha(opacity=0)");
+                else
+                    countdown_elem.setAttribute("style", "opacity:1; -moz-opacity:1; filter:apha(opacity=100)");
+
+                if (confetti_frame == -1 || confetti_frame == 4) {
+                    confetti();
+                    confetti_frame = 0;
+                }
+
+                confetti_frame = confetti_frame + 1;
             }
         }
 
         update_countdown();
-        setInterval(update_countdown, 1000);
+        setInterval(update_countdown, countdown_time);
     </script>
 </body>
 
