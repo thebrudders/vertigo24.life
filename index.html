@@ -117,15 +117,23 @@
             #pre-save {
                 font-size: 1em;
             }
+
+            #platforms {
+                font-size: 0.9em;
+            }
         }
 
         @media (max-width: 400px) {
             #countdown {
-                font-size: 1.5em;
+                font-size: 1.3em;
             }
 
             #pre-save {
-                font-size: 1.2em;
+                font-size: 0.9em;
+            }
+
+            #platforms {
+                font-size: 0.75em;
             }
         }
 
@@ -174,7 +182,7 @@
         }
 
         #platform {
-            font-size: 1.2em;
+            font-size: 1.3em;
         }
 
         #platforms {
@@ -216,7 +224,7 @@
 
         function update_countdown() {
             const now = new Date();
-            const time_remaining = target_date - now;
+            const time_remaining = 0;//target_date - now;
 
             if (time_remaining > 0) {
                 const days = Math.floor(time_remaining / (1000 * 60 * 60 * 24));
@@ -240,6 +248,7 @@
                     if (presave.textContent != new_presave_text)
                         presave.textContent = new_presave_text;
                         presave.removeAttribute("href")
+                        presave.setAttribute("style", "font-sizef")
 
                     // add platforms
                     const platforms = document.getElementById("platforms");
