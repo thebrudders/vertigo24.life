@@ -222,7 +222,7 @@
     <div id="youtube"></div>
     <br/>
 
-    <a id="preview-audio-text">CURRENTLY FEATURING: wockane - XOXO</a>
+    <a id="preview-audio-text">CURRENTLY FEATURING: yhapojj - cutthroat yhap</a>
 
     <audio id="preview-audio" controls>
         <source src="sounds/vertigo24.mp3" type="audio/mpeg">
@@ -323,6 +323,8 @@
 
         // setup countdown iframe
         youtube.innerHTML = `<iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/D1UlWlXKUIY?si=OCyDWOc8LkDek5zy" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>`;
+
+        document.getElementById("background-audio").volume = 0.4;
 
         update_countdown();
         setInterval(update_countdown, countdown_time);
