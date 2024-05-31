@@ -255,7 +255,8 @@
 
         const youtube = document.getElementById("youtube");
 
-        function setup_release_website() {
+        function setup_release_website() 
+        {
             // remove preview audio
             document.getElementById("preview-audio").remove();
             document.getElementById("pre-save").remove();
@@ -271,11 +272,11 @@
             // add platforms
             const platforms = document.getElementById("platforms");
             platforms.innerHTML = platforms.innerHTML + `    
-                    <a id="platform" href="https://music.amazon.com/albums/B0CZPFTMF1?marketplaceId=ATVPDKIKX0DER&musicTerritory=US&ref=dm_sh_GlEhh43o4flk1Xfgs7VDktEe2"
+                    <a id="platform" href="https://music.amazon.com/albums/B0D3VQKB2W"
                     target="_blank">
                         <i class="fab fa-amazon"></i> AMAZON MUSIC
                     </a>
-                    <a id="platform" href="https://music.apple.com/us/album/after-dark-ep/1739861003"
+                    <a id="platform" href="https://music.apple.com/us/album/vertigo/1746184990"
                     target="_blank">
                         <i class="fab fa-apple"></i> APPLE MUSIC
                     </a>
@@ -294,7 +295,7 @@
                     `;
 
             // change youtube iframe
-            //youtube.innerHTML = `<iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/videoseries?si=1ZCR0PS7367yejbv&amp;list=PLXNC0dKysHYzHUR0ZlnV9OjLav6gjk0Gw" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>`
+            youtube.innerHTML = `<iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/videoseries?si=Eqn0yuu6uRykvlgU&amp;list=OLAK5uy_m3ZB0d0PFekUpwAltZuoX_f41b-aax9qg" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>`
         }
 
         function update_countdown() {
