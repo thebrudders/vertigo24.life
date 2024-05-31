@@ -220,9 +220,9 @@
 
     <a id="pre-save" href="https://too.fm/8lmm8ml">CLICK TO PRE-SAVE</a>
 
-    <br/>
+    <br />
     <div id="youtube"></div>
-    <br/>
+    <br />
 
     <a id="preview-audio-text">CURRENTLY FEATURING: lade - oh man</a>
 
@@ -240,7 +240,15 @@
 
     <script>
         const countdown_elem = document.getElementById('countdown');
-        const target_date = new Date('2024-05-30T23:59:00-05:00'); // Central Time
+
+        function get_user_midnight() 
+        {
+            const now = new Date();
+            const midnight = new Date(now.getFullYear(), now.getMonth(), now.getDate() + 1);
+            return midnight;
+        }
+
+        const target_date = get_user_midnight(); // Central Time
 
         let countdown_time = 1000;
         let confetti_frame = -1;
@@ -250,10 +258,11 @@
         function setup_release_website() {
             // remove preview audio
             document.getElementById("preview-audio").remove();
+            document.getElementById("pre-save").remove();
 
             // change presave text
             const new_presave_text = "LISTEN TO VERTIGO ON ALL PLATFORMS";
-            const presave = document.getElementById("pre-save");
+            const presave = document.getElementById("preview-audio-text");
             if (presave.textContent != new_presave_text)
                 presave.textContent = new_presave_text;
             presave.removeAttribute("href")
@@ -274,7 +283,7 @@
                     target="_blank">
                         <i class="fab fa-spotify"></i> SPOTIFY
                     </a>
-                    <a id="platform" href="https://www.music.youtube.com/playlist?list=PLXNC0dKysHYwHhPwxjLOt9slte5MxGqaZ"
+                    <a id="platform" href="https://music.youtube.com/playlist?list=PLXNC0dKysHYwHhPwxjLOt9slte5MxGqaZ"
                     target="_blank">
                         <i class="fab fa-youtube"></i> YOUTUBE MUSIC
                     </a>
@@ -285,7 +294,7 @@
                     `;
 
             // change youtube iframe
-            youtube.innerHTML = `<iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/videoseries?si=1ZCR0PS7367yejbv&amp;list=PLXNC0dKysHYzHUR0ZlnV9OjLav6gjk0Gw" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>`
+            //youtube.innerHTML = `<iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/videoseries?si=1ZCR0PS7367yejbv&amp;list=PLXNC0dKysHYzHUR0ZlnV9OjLav6gjk0Gw" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>`
         }
 
         function update_countdown() {
