@@ -295,12 +295,12 @@
                     `;
 
             // change youtube iframe
-            youtube.innerHTML = `<iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/videoseries?si=Eqn0yuu6uRykvlgU&amp;list=OLAK5uy_m3ZB0d0PFekUpwAltZuoX_f41b-aax9qg" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>`
+            //youtube.innerHTML = `<iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/videoseries?si=Eqn0yuu6uRykvlgU&amp;list=OLAK5uy_m3ZB0d0PFekUpwAltZuoX_f41b-aax9qg" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>`
         }
 
         function update_countdown() {
             const now = new Date();
-            const time_remaining = target_date - now;
+            const time_remaining = 0;//target_date - now;
 
             if (time_remaining > 0) {
                 const days = Math.floor(time_remaining / (1000 * 60 * 60 * 24));
@@ -334,7 +334,7 @@
         }
 
         // setup countdown iframe
-        youtube.innerHTML = `<iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/D1UlWlXKUIY?si=OCyDWOc8LkDek5zy" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>`;
+        youtube.innerHTML = `<iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/videoseries?si=9hkRb2tZgL33obr0&amp;list=PLXNC0dKysHYwHhPwxjLOt9slte5MxGqaZ" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>`;
 
         document.getElementById("background-audio").volume = 0.4;
 
