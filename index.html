@@ -272,7 +272,7 @@
             // add platforms
             const platforms = document.getElementById("platforms");
             platforms.innerHTML = platforms.innerHTML + `    
-                    <a id="platform" href="https://music.amazon.com/albums/B0D3VQKB2W"
+                    <a id="platform" href="https://music.amazon.com/albums/B0DFS26QWP"
                     target="_blank">
                         <i class="fab fa-amazon"></i> AMAZON MUSIC
                     </a>
@@ -280,15 +280,15 @@
                     target="_blank">
                         <i class="fab fa-apple"></i> APPLE MUSIC
                     </a>
-                    <a id="platform" href="https://open.spotify.com/album/6VSGHaSkcU1Li8uRqvRkih"
+                    <a id="platform" href="https://open.spotify.com/album/649bZcuB3qgXbEtyecIedI?si=yxY1A8zhR4-78YyWEDrIwQ"
                     target="_blank">
                         <i class="fab fa-spotify"></i> SPOTIFY
                     </a>
-                    <a id="platform" href="https://music.youtube.com/playlist?list=PLXNC0dKysHYwHhPwxjLOt9slte5MxGqaZ"
+                    <a id="platform" href="https://music.youtube.com/playlist?list=OLAK5uy_ll2s3yauhHuHys6umZZcXuNi-z-ZD8r68&si=tsUhX_ZAj2lEH-mi"
                     target="_blank">
                         <i class="fab fa-youtube"></i> YOUTUBE MUSIC
                     </a>
-                    <a id="platform" href="https://soundcloud.com/jamesstfu/sets/vertigo" 
+                    <a id="platform" href="https://soundcloud.com/jamesstfu/sets/vertigodlx?si=7a09e79783444c69848eba420dd3fd3b&utm_source=clipboard&utm_medium=text&utm_campaign=social_sharing" 
                     target="_blank">
                         <i class="fab fa-soundcloud"></i> SOUNDCLOUD
                     </a>
@@ -298,48 +298,12 @@
             //youtube.innerHTML = `<iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/videoseries?si=Eqn0yuu6uRykvlgU&amp;list=OLAK5uy_m3ZB0d0PFekUpwAltZuoX_f41b-aax9qg" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>`
         }
 
-        function update_countdown() {
-            const now = new Date();
-            const time_remaining = 0;//target_date - now;
-
-            if (time_remaining > 0) {
-                const days = Math.floor(time_remaining / (1000 * 60 * 60 * 24));
-                const hours = Math.floor((time_remaining % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-                const minutes = Math.floor((time_remaining % (1000 * 60 * 60)) / (1000 * 60));
-                const seconds = Math.floor((time_remaining % (1000 * 60)) / 1000);
-
-                countdown_elem.textContent = `${days}d ${hours}h ${minutes}m ${seconds}s`;
-            } else {
-                if (countdown_time == 1000) {
-                    // change countdown time
-                    countdown_time = 500;
-
-                    setup_release_website();
-                }
-
-                countdown_elem.textContent = "0d 0h 0m 0s";
-
-                if (confetti_frame != -1 && confetti_frame % 2)
-                    countdown_elem.setAttribute("style", "opacity:0; -moz-opacity:0; filter:alpha(opacity=0)");
-                else
-                    countdown_elem.setAttribute("style", "opacity:1; -moz-opacity:1; filter:apha(opacity=100)");
-
-                if (confetti_frame == -1 || confetti_frame == 4) {
-                    confetti();
-                    confetti_frame = 0;
-                }
-
-                confetti_frame = confetti_frame + 1;
-            }
-        }
-
         // setup countdown iframe
         youtube.innerHTML = `<iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/mrb-JuxWa5o" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>`;
 
         document.getElementById("background-audio").volume = 0.4;
 
-        update_countdown();
-        setInterval(update_countdown, countdown_time);
+        setup_release_website();
     </script>
 </body>
 
